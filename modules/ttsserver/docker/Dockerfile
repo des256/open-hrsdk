@@ -21,8 +21,8 @@ RUN apk add --no-cache git git-lfs
 RUN git lfs install --skip-smudge
 RUN git clone https://github.com/des256/open-hrsdk.git
 
-ADD https://api.github.com/repos/des256/open-hrsdk/git/refs/heads/open-hrsdk.json
-ADD https://api.github.com/repos/des256/open-hrsdk/git/matching-refs/tags/open-hrsdk-tags.json
+ADD https://api.github.com/repos/des256/open-hrsdk/git/refs/heads/ open-hrsdk.json
+ADD https://api.github.com/repos/des256/open-hrsdk/git/matching-refs/tags/ open-hrsdk-tags.json
 RUN cd /open-hrsdk && git fetch && git reset --hard origin/main
 ##################################
 

@@ -19,11 +19,11 @@ FROM alpine:3.14 as open-hrsdk
 
 RUN apk add --no-cache git git-lfs
 RUN git lfs install --skip-smudge
-RUN git clone https://github.com/hansonrobotics/open-hrsdk.git
+RUN git clone https://github.com/des256/open-hrsdk.git
 
-ADD https://api.github.com/repos/hansonrobotics/open-hrsdk/git/refs/heads/ open-
+ADD https://api.github.com/repos/des256/open-hrsdk/git/refs/heads/ open-
 hrsdk.json
-ADD https://api.github.com/repos/hansonrobotics/open-hrsdk/git/matching-refs/tag
+ADD https://api.github.com/repos/des256/open-hrsdk/git/matching-refs/tag
 s/ open-hrsdk-tags.json
 RUN cd /open-hrsdk && git fetch && git reset --hard origin/main
 ##################################

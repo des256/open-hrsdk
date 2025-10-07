@@ -21,14 +21,19 @@ RUN apk add --no-cache git git-lfs
 RUN git lfs install --skip-smudge
 RUN git clone https://github.com/hansonrobotics/open-hrsdk.git
 
-ADD https://api.github.com/repos/hansonrobotics/open-hrsdk/git/refs/heads/ open-hrsdk.json
-ADD https://api.github.com/repos/hansonrobotics/open-hrsdk/git/matching-refs/tags/ open-hrsdk-tags.json
+ADD https://api.github.com/repos/hansonrobotics/open-hrsdk/git/refs/heads/ open-
+hrsdk.json
+ADD https://api.github.com/repos/hansonrobotics/open-hrsdk/git/matching-refs/tag
+s/ open-hrsdk-tags.json
 RUN cd /open-hrsdk && git fetch && git reset --hard origin/main
 ##################################
 
 FROM ubuntu:20.04
 
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ="America/Los Angeles"
 RUN apt-get update && apt-get install -y \
+	tzdata \
         build-essential \
         libopenblas-base \
         locales \
@@ -37,6 +42,8 @@ RUN apt-get update && apt-get install -y \
         python3-virtualenv \
         sox \
         swig  \
+	libxml2-dev \
+	libxslt-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN locale-gen en_US.UTF-8
